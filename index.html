@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicHub - Spotify Clone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">♫ MusicHub</div>
+      <nav>
+        <button class="nav-btn active" data-view="home">⌂ Home</button>
+        <button class="nav-btn" data-view="search">⌕ Search</button>
+        <button class="nav-btn" data-view="library">▣ Your Library</button>
+      </nav>
+      <div class="playlist-box">
+        <h3>Your Playlists</h3>
+        <button onclick="createPlaylist()">＋ Create playlist</button>
+        <button onclick="showMessage('Liked Songs opened')">♥ Liked Songs</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="arrows"><button>‹</button><button>›</button></div>
+        <div class="search-wrap">
+          <input id="searchInput" type="search" placeholder="What do you want to play?">
+        </div>
+        <button class="profile">N</button>
+      </header>
+
+      <section id="homeView" class="view">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">YOUR MUSIC, YOUR WAY</p>
+            <h1>Good evening</h1>
+            <p>Discover music, build playlists, and enjoy your favorite tracks.</p>
+          </div>
+        </div>
+
+        <section>
+          <div class="section-title"><h2>Quick picks</h2><button onclick="shuffleAll()">Shuffle all</button></div>
+          <div id="trackGrid" class="track-grid"></div>
+        </section>
+
+        <section>
+          <div class="section-title"><h2>Made for you</h2></div>
+          <div class="cards">
+            <article class="album-card" onclick="playTrack(0)">
+              <div class="cover gradient-one">Chill<br>Mix</div>
+              <h3>Chill Mix</h3><p>Relaxing favorites</p>
+            </article>
+            <article class="album-card" onclick="playTrack(2)">
+              <div class="cover gradient-two">Focus<br>Flow</div>
+              <h3>Focus Flow</h3><p>Music for concentration</p>
+            </article>
+            <article class="album-card" onclick="playTrack(4)">
+              <div class="cover gradient-three">Daily<br>Hits</div>
+              <h3>Daily Hits</h3><p>Your daily rotation</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section id="searchView" class="view hidden">
+        <h1>Search</h1>
+        <p class="muted">Type an artist, song, or album above.</p>
+        <div id="searchResults" class="track-grid"></div>
+      </section>
+
+      <section id="libraryView" class="view hidden">
+        <h1>Your Library</h1>
+        <div id="libraryList"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="player">
+    <div class="now-playing">
+      <div id="miniCover" class="mini-cover">♫</div>
+      <div><strong id="nowTitle">Nothing playing</strong><span id="nowArtist">Choose a song</span></div>
+    </div>
+    <div class="controls">
+      <div class="control-buttons">
+        <button onclick="shuffleAll()">⤨</button>
+        <button onclick="previousTrack()">◀◀</button>
+        <button id="playBtn" class="play" onclick="togglePlay()">▶</button>
+        <button onclick="nextTrack()">▶▶</button>
+        <button onclick="toggleLike()">♡</button>
+      </div>
+      <div class="progress-row">
+        <span id="currentTime">0:00</span>
+        <input id="progress" type="range" min="0" max="100" value="0">
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+    <div class="volume">
+      <span>🔊</span><input id="volume" type="range" min="0" max="100" value="70">
+    </div>
+  </footer>
+
+  <audio id="audio"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
